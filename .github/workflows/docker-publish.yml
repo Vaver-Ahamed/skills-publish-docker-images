@@ -1,13 +1,13 @@
 name: Docker Publish
 
-on: 
+on:
   push:
     branches:
-      -main
+      - main
 
 permissions:
-  content: read
-  package: write
+  contents: read
+  packages: write
 
 jobs:
   build-and-push:
@@ -21,5 +21,6 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Build and push Docker image
-        run: docker build . --tag ghcr.io/vaver-ahamed/skills-publish-docker-images/stackoverflown:main
-        run: docker push ghcr.io/vaver-ahamed/skills-publish-docker-images/stackoverflown:main
+        run: |
+          docker build . --tag ghcr.io/vaver-ahamed/skills-publish-docker-images/stackoverflown:main
+          docker push ghcr.io/vaver-ahamed/skills-publish-docker-images/stackoverflown:main
